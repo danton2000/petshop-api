@@ -4,9 +4,8 @@ from flask import Flask
 # Criar e aplicação (motor) para execução da aplicação web
 app = Flask(__name__)
 
-# Para que seja possivel conectarse a um BD é necessário utilizar o DBI
-# Neste caso utilizaremos o SGBD SQlite 3
-
+# Para que seja possivel conectar-se a um banco de dados é necessário utilizar o DBI
+# Neste caso utilizaremos o SGBD SQLite, sendo assim devemos importa o módulo sqlite3
 import sqlite3
 
 # Para esta dinamica iremos criar uma rota para listar os produtos
