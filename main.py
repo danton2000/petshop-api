@@ -51,3 +51,24 @@ def produtos():
     # Para  que esta função retorne uma API é necessário que seja retornado  um tipo de coleção
     # Podendo ser ums lista ou dicionário
     return dados
+
+@app.route("/api/servicos")
+def servicos():
+
+    con = sqlite3.connect("petshop.db")
+
+    cur = con.cursor()
+
+    sql = """
+        SELECT nome From servicos
+    """
+
+    cur.execute(sql)
+
+    dados = cur.fetchall()
+
+    print(dados)
+
+    con.close()
+
+    return dados
