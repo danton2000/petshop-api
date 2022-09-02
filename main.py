@@ -72,3 +72,36 @@ def servicos():
     con.close()
 
     return dados
+
+# Definição da rota através do decorador .route
+# A rota que foi criada está utilização o formato dinâmico de definições rota
+# A parte dinâmica da rota é identificada pelos simbolos "<" e ">"
+# NOTE: as rotas não tem relações entre si
+@app.route("/api/produtos/<nome>")
+# O parâmetro utilizado na função é o mesmo nome utilizado na parte dinâmica da rota
+def produto_detalhes(nome): # View Function(Função de visião)
+
+    # Conexão com o banco de dados
+    con = sqlite3.connect("petshop.db")
+
+    # Criação do cursor
+    cur = con.cursor()
+
+    # A variável SQL é uma instrução de banco de dados, que é representada com um texto no
+    # Python, sendo assim não existe uma validação pelo Python, a validação só acontence 
+    # No momento que a consulta é enviada para o Banco de Dados, utilizando o cursor que 
+    # no código em questão é representado pela variável 'cur'
+
+    # Para simplificar a codificação do SQL é interessante utilizar as aspas duplas como
+    # simbolos para definir textos
+    sql = """
+        SELECT nome, descricao, valor
+        FROM produtos
+        WHERE nome = "Cama"
+    """
+
+    #fechar a conexão
+    con.close()
+
+    # toda função de visão deve ter um retorno
+    return "Pagina de detalhes" + nome
