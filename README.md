@@ -17,6 +17,12 @@ Com o ambiante virutal devidamente ativado é necessário instalar o flask, util
 
     pip install flask
 
+O projeto desenvolvido utiliza o módulo 'requests' que não está presente nos módulos padrões disponíveis no Python, com isso é necessário que seja feita a instalação
+
+    pip install requests
+
+## Execução
+
 Para executar a aplicação flask é necessario executar o seguinte comando
 
     set FLASK_APP=main
@@ -25,3 +31,8 @@ Para executar a aplicação flask é necessario executar o seguinte comando
 
 NOTE: o comando de definição do módulo é executado somente uma vez no ambiente, sendo assim para seguir na execução basta executar o comando flask run
 A sujestão é utilizar o parametro --debug para facilitar e identificar de error no desenvolvimento
+
+- O motor do flask deve ser executado em um terminal indepedente
+- A aplicação de consumo da API deve ser executada de maneira indepente, ou seja, em um outro terminal
+
+    python -m consumo_api
