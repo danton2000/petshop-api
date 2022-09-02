@@ -120,3 +120,25 @@ def produto_detalhes(nome): # View Function(Função de visião)
     # No caso que a informação armazenada na variavel "dados" é uma tupla, se faz necessário
     # A utilização ao jsonify
     return jsonify(dados)
+
+@app.route("/api/servicos/<nome>")
+def servico_detalhes(nome):
+
+    con = sqlite3.connect("petshop.db")
+
+    cur = con.cursor()
+
+    sql = f"""
+        SELECT nome, descricao, valor
+        FROM servicos
+        WHERE nome = '{nome}'
+    """
+
+    cur.execute(sql)
+
+    dados = cur.fetchone()
+
+    #fechar a conexão
+    con.close()
+
+    return jsonify(dados)
