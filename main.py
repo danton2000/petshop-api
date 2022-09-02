@@ -1,5 +1,9 @@
 # importar o flask que foi instaldo dentro do venv
-from flask import Flask
+from flask import (
+    Flask,
+    # O módulo jsonify é utilizado para converter uma coleção qualquer em um documento no formato json
+    jsonify 
+)
 
 # Criar e aplicação (motor) para execução da aplicação web
 app = Flask(__name__)
@@ -94,14 +98,25 @@ def produto_detalhes(nome): # View Function(Função de visião)
 
     # Para simplificar a codificação do SQL é interessante utilizar as aspas duplas como
     # simbolos para definir textos
-    sql = """
+    # Uma forma de aplicar um filtro dinâmico na consulta que será enviada, é a utilização
+    # de alguma forma de interpolação
+    sql = f"""
         SELECT nome, descricao, valor
         FROM produtos
-        WHERE nome = "Cama"
+        WHERE nome = '{nome}'
     """
+
+    #Executar a consulta uitlizando o cursor
+    cur.execute(sql)
+
+    # Para casos de consulta que retorna somente um registro, o uso do fetchone (busca um registro) é o método mais indicado para este tipo de ação
+    # NOTE: o uso do fetchone retorna somente uma tupla, quando for fetchall retorna uma lista de tuplas
+    dados = cur.fetchone()
 
     #fechar a conexão
     con.close()
 
     # toda função de visão deve ter um retorno
-    return "Pagina de detalhes" + nome
+    # No caso que a informação armazenada na variavel "dados" é uma tupla, se faz necessário
+    # A utilização ao jsonify
+    return jsonify(dados)
