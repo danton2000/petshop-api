@@ -35,4 +35,5 @@ A sujestão é utilizar o parametro --debug para facilitar e identificar de erro
 - O motor do flask deve ser executado em um terminal indepedente
 - A aplicação de consumo da API deve ser executada de maneira indepente, ou seja, em um outro terminal
 
+
     python -m consumo_api
